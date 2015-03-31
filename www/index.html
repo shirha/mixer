@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Mixer</title>
+    <link href="http://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="http://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+  </head>
+
+  <body>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+             
+    <ion-nav-view></ion-nav-view>
+
+    <script id="templates/tabs.html" type="text/ng-template">
+      <ion-tabs class="tabs-icon-top tabs-positive">
+
+        <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+          <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Ingredients" icon="ion-document-text" href="#/tab/about">
+          <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Effects" icon="ion-document-text" href="#/tab/contact">
+          <ion-nav-view name="contact-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Reset" icon="ion-ios-loop-strong" href="#/tab/reset">
+          <ion-nav-view name="reset-tab"></ion-nav-view>
+        </ion-tab>
+      </ion-tabs>
+    </script>
+
+    <script id="templates/home.html" type="text/ng-template">
+      <ion-view view-title="Home">
+        <ion-content>
+          <ion-list>
+            <ion-item item-height="101px" item-render-buffer="10" collection-repeat="recipe in db.recipes | filter:available()">
+              <div class="button-bar"><span class="padding">{{recipe[2]}}</span>&nbsp;
+                <button  class="button button-outline button-positive" 
+                         ng-click="toggle(index)"
+                         ng-repeat="index in recipe[0]">
+                  {{db.ingreds[index][0]}}
+                </button> 
+              </div>
+              <div class="padding" align="center">
+                {{effect(recipe[1])}}
+              </div>
+            </ion-item>     
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/about.html" type="text/ng-template">
+      <ion-view title="Ingredients">
+        <ion-content>
+          <div class="row" ng-repeat="ingred in db.ingreds">
+            <ion-checkbox ng-model="ingred[2]"></ion-checkbox>
+            <div class="col padding col-20 positive">{{ingred[0]}}</div>
+            <div class="col padding">{{effect_list($index)}}</div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/contact.html" type="text/ng-template">
+      <ion-view title="Effects">
+        <ion-content>
+          <div class="row" ng-repeat="effect in db.effects">
+            <div class="col padding col-20">{{effect[0]}}</div>
+            <div class="col padding positive">{{ingred_list($index)}}</div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/reset.html" type="text/ng-template">
+      <ion-view title="Reset">
+        <ion-content>
+              <br><br><br><br>
+          <button  class="button button-outline centered" 
+                   ng-click="exclude_list()">
+            Exclude Ingredients
+          </button>
+<!--           
+              <br><br><br><br>
+          <button  class="button button-outline centered" 
+                   ng-click="sample_list()">
+            Sample Ingredients
+          </button> 
+-->
+        </ion-content>
+      </ion-view>
+    </script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
