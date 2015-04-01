@@ -20612,7 +20612,11 @@ angular.module('ionicApp', ['ionic'])
   $scope.db = DbService.all();
 
   $scope.ingred_list = function (e) {
-    return $scope.db.ingreds.filter(function(i) {return i[1].indexOf(e) !== -1}).map(function(i){return i[0]}).join(", ");
+    return $scope.db.ingreds.filter(function(i) {
+      return i[1].indexOf(e) !== -1
+        }).map(function(i){
+      return i[0]
+        }).join(", ");
   };
 })
 
