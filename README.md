@@ -1,7 +1,7 @@
-skyrim alchemy using ionic framework
-
-ionic platform add android
-ionic browser add crosswalk
-ionic resources
-cordova plugin add org.apache.cordova.splashscreen
-ionic serve
+skyrim alchemy using ionic framework <br>
+<br>
+ionic platform add android <br>
+ionic browser add crosswalk <br>
+ionic resources <br>
+cordova plugin add org.apache.cordova.splashscreen <br>
+ionic serve <br>
