@@ -46,8 +46,9 @@
               collection-repeat="recipe in db.recipes | filter:available()">
 
               <div class="button-bar">
-                <span class="padding">{{recipe[0]}}</span>&nbsp;
-                <button  class="button button-outline button-positive" 
+                <span class="padding">{{recipe[0]}}</span>
+                <button  class="button button-outline button-positive"
+                         style="max-width:31%"
                          ng-click="set_off(index)"
                          ng-repeat="index in recipe[1]">
                   {{db.ingreds[index][0]}}
